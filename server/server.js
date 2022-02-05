@@ -21,8 +21,8 @@ app.post('/numbers', function (req, res) {
     console.log('request at /numbers was made', req);
     let newEquation = req.body.numberInputs;
 
-    x = req.body.numberInputs.numOne;
-    y = req.body.numberInputs.numTwo;
+    x = Number(req.body.numberInputs.numOne);
+    y = Number(req.body.numberInputs.numTwo);
     z = req.body.numberInputs.operator;
     let answer = compute(x, y, z);
 
@@ -36,6 +36,7 @@ app.post('/numbers', function (req, res) {
 let answer = 0;
 
 function compute(x, y, z) {
+
     if (z === 'plusButton') {
         answer = (x + y);
         return answer;

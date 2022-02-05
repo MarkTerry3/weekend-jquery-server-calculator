@@ -33,7 +33,7 @@ function postNumbers() {
                 //standard practice to put response in the parameters
                 console.log('great success, in postNumbers', response);
                 //to do , append quotes to dom
-                // renderToDom(response);
+                getNumbers();
             }) .catch(function(response) {
                 //if the server sends an error, what will we do with that situation? - 
                 console.log('ope no luck, in postNumbers', response);
@@ -71,9 +71,23 @@ function operatorButtonClick(params) {
 }// end operatorButtonClick
 
 
-function renderToDom(inputsArray) {
-    for (let i = 0; i < inputsArray.length; i++) {
-        $('#answerOutput').append(`<li>${inputsArray.numOne} ${inputsArray.operator} ${inputsArray.numTwo} ${inputsArray.answer}</li>`)
+function renderToDom(array) {
+    $('#answerOutput').empty();
+    //you have to loop because the user isnt only going to put one answer, you need to go through every object in the array
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].operator === 'plusButton') {
+            array[i].operator = '+';
+        }
+        if (array[i].operator === 'minusButton') {
+            array[i].operator = '-';
+        }
+        if (array[i].operator === 'timesButton') {
+            array[i].operator = '*';
+        }
+        if (array[i].operator === 'divideButton') {
+            array[i].operator = '/';
+        }
+        $('#answerOutput').append(`<ul>${array[i].numOne} ${array[i].operator} ${array[i].numTwo} = ${array[i].answer}</ul>`)
         
     }
     // append to a ul
